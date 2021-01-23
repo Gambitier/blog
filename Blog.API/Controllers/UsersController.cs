@@ -19,10 +19,10 @@ namespace Blog.API.Controllers
 
         // GET: api/<UsersController>
         [HttpGet]
-        public async Task<List<User>> GetUsers()
+        public async Task<ActionResult> GetUsers()
         {
             var data = await _userService.GetAllUsersAsync();
-            return data;
+            return Ok(data);
         }
 
         // GET api/<UsersController>/5
