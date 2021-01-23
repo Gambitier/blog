@@ -1,5 +1,7 @@
 ﻿using Blog.Application.Services;
+using Blog.CommandQueryHandler.Handler.Query;
 using Blog.Domain.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,26 +12,27 @@ namespace Blog.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUsersService _userService;
+        private readonly IMediator mediator;
 
-        public UsersController(IUsersService userService)
+        public UsersController(IMediator mediator)
         {
-            _userService = userService;
+            this.mediator = mediator;
         }
 
         // GET: api/<UsersController>
         [HttpGet]
         public async Task<ActionResult> GetUsers()
         {
-            var data = await _userService.GetAllUsersAsync();
+            var data = await mediator.Send(new GetUsers()).ConfigureAwait(false);
             return Ok(data);
         }
 
         // GET api/<UsersController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<ActionResult> GetUserByIdAsync(int id)
         {
-            return "value";
+            var data = await mediator.Send(new GetUserById { Id = id }).ConfigureAwait(false);
+            return Ok(data);
         }
 
         // POST api/<UsersController>

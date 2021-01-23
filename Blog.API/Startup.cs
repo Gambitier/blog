@@ -1,11 +1,13 @@
 using Blog.API.ExtensionMethods;
 using Blog.Persistence.Factory;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace Blog.API
 {
@@ -24,6 +26,8 @@ namespace Blog.API
             services.AddSingleton(typeof(IConfiguration), Configuration);
             services.AddSingleton(typeof(IConnectionFactory), typeof(ConnectionFactory));
             services.AddDependencyInjection();
+            services.AddMediatR(Assembly.Load("Blog.CommandQueryHandler"));
+
             services.AddControllers().AddJsonOptions(option =>
             {
                 option.JsonSerializerOptions.PropertyNamingPolicy = null;

@@ -7,5 +7,6 @@ namespace Blog.Persistence.Persistence
     public interface IUsersPersistence
     {
         Task<List<User>> GetAllUsers();
+        Task<User> GetUserById(int id);
     }
 }
