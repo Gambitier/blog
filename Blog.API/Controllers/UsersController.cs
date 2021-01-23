@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Blog.Application.Services;
+using Blog.Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Blog.API.Controllers
@@ -10,11 +10,19 @@ namespace Blog.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IUsersService _userService;
+
+        public UsersController(IUsersService userService)
+        {
+            _userService = userService;
+        }
+
         // GET: api/<UsersController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<List<User>> GetUsers()
         {
-            return new string[] { "value1", "value2" };
+            var data = await _userService.GetAllUsersAsync();
+            return data;
         }
 
         // GET api/<UsersController>/5
