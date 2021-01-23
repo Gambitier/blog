@@ -20,7 +20,7 @@ namespace Blog.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetUsers()
         {
-            var data = await mediator.Send(new GetUsers()).ConfigureAwait(false);
+            var data = await mediator.Send(new GetUsers.Query()).ConfigureAwait(false);
             return Ok(data);
         }
 
@@ -28,7 +28,7 @@ namespace Blog.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> GetUserByIdAsync(int id)
         {
-            var data = await mediator.Send(new GetUserById { Id = id }).ConfigureAwait(false);
+            var data = await mediator.Send(new GetUserById.Query{ Id = id }).ConfigureAwait(false);
             return Ok(data);
         }
 

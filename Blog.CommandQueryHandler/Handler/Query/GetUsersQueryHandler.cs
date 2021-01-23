@@ -7,23 +7,24 @@ using System.Threading.Tasks;
 
 namespace Blog.CommandQueryHandler.Handler.Query
 {
-    public class GetUsers : IRequest<List<User>>
+    public class GetUsers
     {
-    }
+        public class Query : IRequest<List<User>> { }
 
-    class GetUsersQueryHandler : IRequestHandler<GetUsers, List<User>>
-    {
-        private readonly IUsersPersistence usersPersistence;
-
-        public GetUsersQueryHandler(IUsersPersistence usersPersistence)
+        class Handler : IRequestHandler<Query, List<User>>
         {
-            this.usersPersistence = usersPersistence;
-        }
+            private readonly IUsersPersistence usersPersistence;
 
-        public async Task<List<User>> Handle(GetUsers request, CancellationToken cancellationToken)
-        {
-            var result = await usersPersistence.GetAllUsers();
-            return result;
+            public Handler(IUsersPersistence usersPersistence)
+            {
+                this.usersPersistence = usersPersistence;
+            }
+
+            public async Task<List<User>> Handle(Query request, CancellationToken cancellationToken)
+            {
+                var result = await usersPersistence.GetAllUsers();
+                return result;
+            }
         }
     }
 }
