@@ -1,4 +1,5 @@
 using Blog.API.ExtensionMethods;
+using Blog.Persistence.Factory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -10,17 +11,18 @@ namespace Blog.API
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton()
+            services.AddSingleton(typeof(IConfiguration), Configuration);
+            services.AddSingleton(typeof(IConnectionFactory), typeof(ConnectionFactory));
             services.AddDependencyInjection();
             services.AddControllers();
             services.AddSwaggerGen(c =>

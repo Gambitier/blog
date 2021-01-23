@@ -1,7 +1,7 @@
-﻿using Blog.Application.Services;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using System.Linq;
+using System;
 
 namespace Blog.API.ExtensionMethods
 {
@@ -9,13 +9,12 @@ namespace Blog.API.ExtensionMethods
     {
         public static void AddDependencyInjection(this IServiceCollection services)
         {
-            var applicationServicesAssembly = Assembly.Load(nameof(Blog.Application));
+            var applicationServicesAssembly = Assembly.Load("Blog.Application");
             var applicationInterfaces = applicationServicesAssembly
                 .GetTypes()
                 .Where(x => 
                     x.IsInterface && 
-                    x.Name.EndsWith("Service") && 
-                    x.Namespace.Contains("Blog.Application"))
+                    x.Name.EndsWith("Service"))
                 .ToList();
 
             foreach(var intrface in applicationInterfaces)
@@ -23,13 +22,12 @@ namespace Blog.API.ExtensionMethods
                 AddImplementations(services, applicationServicesAssembly, intrface);
             }
 
-            var persistenceServicesAssembly = Assembly.Load(nameof(Blog.Persistence));
-            var persistenceServicesInterfaces = applicationServicesAssembly
+            var persistenceServicesAssembly = Assembly.Load("Blog.Persistence");
+            var persistenceServicesInterfaces = persistenceServicesAssembly
                 .GetTypes()
                 .Where(x =>
                     x.IsInterface &&
-                    x.Name.EndsWith("Persistence") &&
-                    x.Namespace.Contains("Blog.Persistence"))
+                    x.Name.EndsWith("Persistence"))
                 .ToList();
 
             foreach (var intrface in persistenceServicesInterfaces)
@@ -38,7 +36,7 @@ namespace Blog.API.ExtensionMethods
             }
         }
 
-        private static void AddImplementations(IServiceCollection services, Assembly assembly, System.Type intrface)
+        private static void AddImplementations(IServiceCollection services, Assembly assembly, Type intrface)
         {
             var implementingClasses = assembly
                 .GetTypes()
