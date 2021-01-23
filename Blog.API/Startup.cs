@@ -24,7 +24,10 @@ namespace Blog.API
             services.AddSingleton(typeof(IConfiguration), Configuration);
             services.AddSingleton(typeof(IConnectionFactory), typeof(ConnectionFactory));
             services.AddDependencyInjection();
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(option =>
+            {
+                option.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blog.API", Version = "v1" });
