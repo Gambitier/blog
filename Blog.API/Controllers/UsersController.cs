@@ -1,9 +1,6 @@
-﻿using Blog.Application.Services;
-using Blog.CommandQueryHandler.Handler.Query;
-using Blog.Domain.Models;
+﻿using Blog.CommandQueryHandler.Handler.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Blog.API.Controllers

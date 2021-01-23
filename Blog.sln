@@ -5,13 +5,11 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.API", "Blog.API\Blog.API.csproj", "{4699AF56-F33B-4A07-BA72-9C4F2B0D951C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Application", "Blog.Application\Blog.Application.csproj", "{C386F91A-4D65-4307-9CB2-8B2F771E7126}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Domain", "Blog.Models\Blog.Domain.csproj", "{E689E8B1-77EC-40D8-994A-2E5EFEA99199}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.Persistence", "Blog.Persistence\Blog.Persistence.csproj", "{5EBBEFF2-46FD-4256-B0C3-A31159C07C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.CommandQueryHandler", "Blog.CommandQueryHandler\Blog.CommandQueryHandler.csproj", "{85413943-B8C3-4D7F-A9F4-9509047E8B1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.CommandQueryHandler", "Blog.CommandQueryHandler\Blog.CommandQueryHandler.csproj", "{85413943-B8C3-4D7F-A9F4-9509047E8B1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{4699AF56-F33B-4A07-BA72-9C4F2B0D951C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4699AF56-F33B-4A07-BA72-9C4F2B0D951C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4699AF56-F33B-4A07-BA72-9C4F2B0D951C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C386F91A-4D65-4307-9CB2-8B2F771E7126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C386F91A-4D65-4307-9CB2-8B2F771E7126}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C386F91A-4D65-4307-9CB2-8B2F771E7126}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C386F91A-4D65-4307-9CB2-8B2F771E7126}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E689E8B1-77EC-40D8-994A-2E5EFEA99199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E689E8B1-77EC-40D8-994A-2E5EFEA99199}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E689E8B1-77EC-40D8-994A-2E5EFEA99199}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -9,19 +9,6 @@ namespace Blog.API.ExtensionMethods
     {
         public static void AddDependencyInjection(this IServiceCollection services)
         {
-            var applicationServicesAssembly = Assembly.Load("Blog.Application");
-            var applicationInterfaces = applicationServicesAssembly
-                .GetTypes()
-                .Where(x => 
-                    x.IsInterface && 
-                    x.Name.EndsWith("Service"))
-                .ToList();
-
-            foreach(var intrface in applicationInterfaces)
-            {
-                AddImplementations(services, applicationServicesAssembly, intrface);
-            }
-
             var persistenceServicesAssembly = Assembly.Load("Blog.Persistence");
             var persistenceServicesInterfaces = persistenceServicesAssembly
                 .GetTypes()
